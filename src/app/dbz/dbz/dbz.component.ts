@@ -1,10 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
-
-interface IPersonaje{
-  Nombre: string;
-  Poder: number;
-}
+import { Component, Input, OnInit } from '@angular/core';
+import { IPersonaje } from '../interfaces/interfaces';
 
 @Component({
   selector: 'app-dbz',
@@ -12,11 +7,6 @@ interface IPersonaje{
   styleUrls: ['./dbz.component.css']
 })
 export class DbzComponent implements OnInit {
-
-  personaje: IPersonaje = {
-    Nombre: "",
-    Poder: 0
-  }
 
   Personajes: IPersonaje[] = [
     {
@@ -29,20 +19,17 @@ export class DbzComponent implements OnInit {
     }
   ];
 
+  personaje: IPersonaje = {
+    Nombre:"",
+    Poder: 0
+  }
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  public agregar():void {
-    console.log(this.personaje);
-    if(this.personaje.Nombre.length > 0 && this.personaje.Poder > 0){
-      this.Personajes.push(this.personaje);
-      this.personaje = {
-        Nombre: "",
-        Poder: 0
-      }
-    }
+  public agregarPersonaje(personajeParam:IPersonaje) {
+    this.Personajes.push(personajeParam);
   }
-
 }
